@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Dashboard</title>
+
+<link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<main class="page-container">
+
+<h1>Student Dashboard</h1>
+
+<p class="welcome">
+    Welcome,
+    <strong th:text="${student.firstName}">
+        Student
+    </strong>
+</p>
+
+<div class="profile-card">
+
+    <h2>My Information</h2>
+
+    <p>
+        <strong>Name:</strong>
+        <span th:text="${student.firstName + ' ' + student.lastName}">
+            Student Name
+        </span>
+    </p>
+
+    <p>
+        <strong>Matric Number:</strong>
+        <span th:text="${student.matricNumber}">
+            Matric Number
+        </span>
+    </p>
+
+    <p>
+        <strong>Department:</strong>
+        <span th:text="${student.department}">
+            Department
+        </span>
+    </p>
+
+</div>
+
+<div class="booking-card">
+
+    <h2>Current Booking</h2>
+
+    <div th:if="${booking == null}">
+
+        <p class="no-booking">
+            You currently do not have a room booking.
+        </p>
+
+        <a href="/rooms/available"
+           class="button">
+            Find Available Room
+        </a>
+
+    </div>
+
+    <div th:if="${booking != null}">
+
+        <p>
+            <strong>Hostel:</strong>
+            <span th:text="${booking.room.hostel.name}">
+                Hostel
+            </span>
+        </p>
+
+        <p>
+            <strong>Room:</strong>
+            <span th:text="${booking.room.roomNumber}">
+                Room
+            </span>
+        </p>
+
+        <p>
+            <strong>Booking Date:</strong>
+            <span th:text="${booking.bookingDate}">
+                Date
+            </span>
+        </p>
+
+        <a href="/bookings/my"
+           class="button">
+            View Full Booking
+        </a>
+
+    </div>
+
+</div>
+
+<h2>What would you like to do?</h2>
+
+<div class="dashboard">
+
+    <div class="card">
+
+        <h2>Browse Rooms</h2>
+
+        <p>
+            View all hostels and their rooms,
+            including current occupancy.
+        </p>
+
+        <a href="/rooms"
+           class="button">
+            View Rooms
+        </a>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Available Rooms</h2>
+
+        <p>
+            Find rooms that currently have
+            available spaces.
+        </p>
+
+        <a href="/rooms/available"
+           class="button">
+            Find a Room
+        </a>
+
+    </div>
+
+    <div class="card">
+
+        <h2>My Booking</h2>
+
+        <p>
+            View your current room booking
+            and booking information.
+        </p>
+
+        <a href="/bookings/my"
+           class="button">
+            View My Booking
+        </a>
+
+    </div>
+
+</div>
+
+</main>
+
+</body>
+</html>

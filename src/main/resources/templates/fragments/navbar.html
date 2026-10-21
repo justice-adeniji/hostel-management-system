@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<nav th:fragment="navbar"
+     class="navbar">
+
+    <div class="nav-brand">
+
+        <a th:if="${isAdmin}"
+           href="/admin/dashboard">
+            Hostel Management System
+        </a>
+
+        <a th:if="${isStudent}"
+           href="/student/dashboard">
+            Hostel Management System
+        </a>
+
+    </div>
+
+    <div class="nav-links">
+
+        <!-- ADMIN NAVIGATION -->
+
+        <div th:if="${isAdmin}"
+             class="nav-group">
+
+            <a href="/admin/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/hostels">
+                Hostels
+            </a>
+
+            <a href="/students">
+                Students
+            </a>
+
+            <a href="/rooms">
+                Rooms
+            </a>
+
+        </div>
+
+        <!-- STUDENT NAVIGATION -->
+
+        <div th:if="${isStudent}"
+             class="nav-group">
+
+            <a href="/student/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/rooms">
+                Rooms
+            </a>
+
+            <a href="/rooms/available">
+                Available
+            </a>
+
+            <a href="/bookings/my">
+                My Booking
+            </a>
+
+        </div>
+
+        <form th:action="@{/logout}"
+              method="post"
+              class="logout-form">
+
+            <button type="submit">
+                Logout
+            </button>
+
+        </form>
+
+    </div>
+
+</nav>
+
+</body>
+</html>

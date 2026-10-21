@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title th:text="${hostel.id == null ? 'Create Hostel' : 'Edit Hostel'}">
+    Hostel
+</title>
+
+<link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<main class="page-container narrow">
+
+<h1 th:text="${hostel.id == null ? 'Create Hostel' : 'Edit Hostel'}">
+    Hostel
+</h1>
+
+<div th:if="${hostelError}"
+     class="business-error"
+     th:text="${hostelError}">
+</div>
+
+<form class="form-card"
+      th:action="${hostel.id == null}
+                 ? @{/hostels/create}
+                 : @{/hostels/update/{id}(id=${hostel.id})}"
+      th:object="${hostel}"
+      method="post">
+
+    <div class="form-group">
+        <label for="name">Hostel Name</label>
+
+        <input type="text"
+               id="name"
+               th:field="*{name}">
+
+        <div class="error"
+             th:if="${#fields.hasErrors('name')}"
+             th:errors="*{name}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="location">Location</label>
+
+        <input type="text"
+               id="location"
+               th:field="*{location}">
+
+        <div class="error"
+             th:if="${#fields.hasErrors('location')}"
+             th:errors="*{location}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="numberOfRooms">Number of Rooms</label>
+
+        <input type="number"
+               id="numberOfRooms"
+               min="1"
+               th:field="*{numberOfRooms}">
+
+        <div class="error"
+             th:if="${#fields.hasErrors('numberOfRooms')}"
+             th:errors="*{numberOfRooms}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="roomCapacity">Room Capacity</label>
+
+        <input type="number"
+               id="roomCapacity"
+               min="2"
+               max="6"
+               th:field="*{roomCapacity}">
+
+        <div class="error"
+             th:if="${#fields.hasErrors('roomCapacity')}"
+             th:errors="*{roomCapacity}">
+        </div>
+    </div>
+
+    <div class="form-actions">
+
+        <button type="submit"
+                th:text="${hostel.id == null ? 'Create Hostel' : 'Save Changes'}">
+            Save
+        </button>
+
+        <a href="/hostels" class="back">
+            Cancel
+        </a>
+
+    </div>
+
+</form>
+
+</main>
+
+</body>
+</html>

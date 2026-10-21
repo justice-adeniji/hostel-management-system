@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Booking</title>
+
+<link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<main class="page-container medium">
+
+<h1>My Booking</h1>
+
+<div th:if="${booking == null}"
+     class="no-booking">
+
+    <h2>No Booking Found</h2>
+
+    <p>
+        You currently do not have a room booking.
+    </p>
+
+    <a href="/rooms/available"
+       class="button">
+        Find Available Room
+    </a>
+
+</div>
+
+<div th:if="${booking != null}"
+     class="booking-card">
+
+    <h2>Booking Details</h2>
+
+    <div class="booking-detail">
+        <strong>Student:</strong>
+        <span th:text="${booking.student.firstName + ' ' + booking.student.lastName}">
+            Student Name
+        </span>
+    </div>
+
+    <div class="booking-detail">
+        <strong>Matric Number:</strong>
+        <span th:text="${booking.student.matricNumber}">
+            Matric Number
+        </span>
+    </div>
+
+    <div class="booking-detail">
+        <strong>Hostel:</strong>
+        <span th:text="${booking.room.hostel.name}">
+            Hostel
+        </span>
+    </div>
+
+    <div class="booking-detail">
+        <strong>Location:</strong>
+        <span th:text="${booking.room.hostel.location}">
+            Location
+        </span>
+    </div>
+
+    <div class="booking-detail">
+        <strong>Room:</strong>
+        <span th:text="${booking.room.roomNumber}">
+            Room
+        </span>
+    </div>
+
+    <div class="booking-detail">
+        <strong>Capacity:</strong>
+        <span th:text="${booking.room.capacity}">
+            Capacity
+        </span>
+    </div>
+
+    <div class="booking-detail">
+        <strong>Current Occupancy:</strong>
+        <span th:text="${booking.room.occupiedSpaces}">
+            Occupancy
+        </span>
+    </div>
+
+    <div class="booking-detail">
+        <strong>Booking Date:</strong>
+        <span th:text="${booking.bookingDate}">
+            Date
+        </span>
+    </div>
+
+</div>
+
+</main>
+
+</body>
+</html>

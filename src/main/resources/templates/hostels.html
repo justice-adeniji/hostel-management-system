@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Management</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<main class="page-container medium">
+
+<h1>Hostel Management</h1>
+
+<p class="page-description">
+    Manage hostels, rooms and room capacities.
+</p>
+
+<div class="top-bar">
+    <a href="/hostels/new" class="create-button">
+        + Create Hostel
+    </a>
+</div>
+
+<div th:if="${hostelError}"
+     class="business-error"
+     th:text="${hostelError}">
+</div>
+
+<div th:if="${#lists.isEmpty(hostels)}"
+     class="empty">
+
+    <p>No hostels have been created yet.</p>
+
+</div>
+
+<div th:each="hostel : ${hostels}"
+     class="hostel">
+
+    <h2 th:text="${hostel.name}">
+        Hostel Name
+    </h2>
+
+    <p class="hostel-info">
+        <strong>Location:</strong>
+        <span th:text="${hostel.location}"></span>
+    </p>
+
+    <p class="hostel-info">
+        <strong>Number of Rooms:</strong>
+        <span th:text="${hostel.numberOfRooms}"></span>
+    </p>
+
+    <p class="hostel-info">
+        <strong>Room Capacity:</strong>
+        <span th:text="${hostel.roomCapacity}"></span>
+    </p>
+
+    <div class="actions">
+
+        <a th:href="@{/hostels/edit/{id}(id=${hostel.id})}"
+           class="edit-button">
+            Edit
+        </a>
+
+        <form th:action="@{/hostels/delete/{id}(id=${hostel.id})}"
+              method="post"
+              onsubmit="return confirm('Are you sure you want to delete this hostel?');">
+
+            <button type="submit"
+                    class="delete-button">
+                Delete
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</main>
+
+</body>
+</html>

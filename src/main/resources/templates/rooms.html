@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rooms</title>
+
+<link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<main class="page-container medium">
+
+<h1>Hostel Rooms</h1>
+
+<div th:if="${bookingSuccess}"
+     class="message success"
+     th:text="${bookingSuccess}">
+</div>
+
+<div th:if="${bookingError}"
+     class="message error"
+     th:text="${bookingError}">
+</div>
+
+<div class="room-filter">
+
+    <a href="/rooms">
+        All Rooms
+    </a>
+
+    <a href="/rooms/available">
+        Available Rooms
+    </a>
+
+</div>
+
+<div th:if="${#lists.isEmpty(hostels)}"
+     class="empty">
+
+    <p>No hostels have been created yet.</p>
+
+</div>
+
+<div th:each="hostel : ${hostels}">
+
+    <details class="hostel-accordion">
+
+        <summary th:text="${hostel.name}">
+            Hostel Name
+        </summary>
+
+        <div class="rooms">
+
+            <div th:each="room : ${rooms}"
+                 th:if="${room.hostel.id == hostel.id}"
+                 class="room">
+
+                <h3 th:text="${room.roomNumber}">
+                    Room A1
+                </h3>
+
+                <p>
+                    <strong>Capacity:</strong>
+                    <span th:text="${room.capacity}"></span>
+                </p>
+
+                <p>
+                    <strong>Occupied:</strong>
+                    <span th:text="${room.occupiedSpaces}"></span>
+                </p>
+
+                <p>
+                    <strong>Available Spaces:</strong>
+                    <span th:text="${room.capacity - room.occupiedSpaces}"></span>
+                </p>
+
+                <p th:if="${room.occupiedSpaces < room.capacity}"
+                   class="available">
+                    Available
+                </p>
+
+                <p th:if="${room.occupiedSpaces >= room.capacity}"
+                   class="full">
+                    Full
+                </p>
+
+                <form th:if="${isStudent and room.occupiedSpaces < room.capacity}"
+                    th:action="@{/bookings/book}"
+                    method="post">
+
+                    <input type="hidden"
+                           name="roomId"
+                           th:value="${room.id}">
+
+                    <button type="submit">
+                        BOOK
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </details>
+
+</div>
+
+</main>
+
+</body>
+</html>

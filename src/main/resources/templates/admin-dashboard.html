@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<main class="page-container">
+
+<h1>Admin Dashboard</h1>
+
+<p class="welcome">
+    Welcome to the Hostel Management System.
+    Monitor and manage the hostel system from here.
+</p>
+
+<div class="stats">
+
+    <div class="stat-card">
+        <h3>Total Hostels</h3>
+        <div class="stat-number" th:text="${totalHostels}">0</div>
+    </div>
+
+    <div class="stat-card">
+        <h3>Total Students</h3>
+        <div class="stat-number" th:text="${totalStudents}">0</div>
+    </div>
+
+    <div class="stat-card">
+        <h3>Total Rooms</h3>
+        <div class="stat-number" th:text="${totalRooms}">0</div>
+    </div>
+
+    <div class="stat-card">
+        <h3>Occupied Spaces</h3>
+        <div class="stat-number" th:text="${occupiedSpaces}">0</div>
+    </div>
+
+</div>
+
+<h2 class="section-title">Management</h2>
+
+<div class="dashboard">
+
+    <div class="card">
+        <h2>Hostels</h2>
+        <p>
+            Create, edit and delete hostels.
+            Manage room numbers and room capacities.
+        </p>
+        <a href="/hostels" class="button">Manage Hostels</a>
+    </div>
+
+    <div class="card">
+        <h2>Students</h2>
+        <p>
+            View existing students and create
+            new student accounts.
+        </p>
+        <a href="/students" class="button">Manage Students</a>
+    </div>
+
+    <div class="card">
+        <h2>Rooms</h2>
+        <p>
+            View all rooms and monitor their
+            current occupancy.
+        </p>
+        <a href="/rooms" class="button">View Rooms</a>
+    </div>
+
+</div>
+
+</main>
+
+</body>
+</html>

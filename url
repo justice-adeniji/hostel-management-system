@@ -1,0 +1,20 @@
+- **Login:** `http://localhost:8080/login`
+- **Admin — Hostels:** `http://localhost:8080/hostels`
+- **Admin — Create Hostel:** `http://localhost:8080/hostels/new`
+- **Admin — Edit Hostel:** `http://localhost:8080/hostels/edit/{id}`
+- **Admin — Create Student:** `http://localhost:8080/students/new`
+- **Student/Admin — All Rooms:** `http://localhost:8080/rooms`
+- **Student/Admin — Available Rooms:** `http://localhost:8080/rooms/available`
+- **Student — Book Room:** `POST /bookings/book` *(currently an action, not a page)*
+
+**Admin login:** `admin@hostel.com` / `admin123`
+
+
+Student Details
+1. John Doe - john@gmail.com
+2. Mary Jane - mary@gmail.com
+3. Peter Richard - peter@gmail.com
+4. Anthony Black - anthony@gmail.com
+5. William Adeoti - will@gmail.com
+6. Iasbella Faith - faith@gmail.com
+

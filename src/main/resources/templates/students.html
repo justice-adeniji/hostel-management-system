@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Students</title>
+
+<link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<main class="page-container medium">
+
+<h1>Student Management</h1>
+
+<div class="top-bar">
+
+    <p class="page-description">
+        Manage student accounts.
+    </p>
+
+    <a href="/students/new"
+       class="button">
+        + Create Student
+    </a>
+
+</div>
+
+<div th:if="${#lists.isEmpty(students)}"
+     class="empty">
+
+    <p>
+        No students have been created yet.
+    </p>
+
+</div>
+
+<div th:each="student : ${students}"
+     class="student-card">
+
+    <h2>
+
+        <span th:text="${student.firstName}">
+            First Name
+        </span>
+
+        <span th:text="${student.lastName}">
+            Last Name
+        </span>
+
+    </h2>
+
+    <div class="detail">
+        <strong>Matric Number:</strong>
+        <span th:text="${student.matricNumber}">
+            Matric Number
+        </span>
+    </div>
+
+    <div class="detail">
+        <strong>Email:</strong>
+        <span th:text="${student.email}">
+            Email
+        </span>
+    </div>
+
+    <div class="detail">
+        <strong>Phone:</strong>
+        <span th:text="${student.phoneNumber}">
+            Phone
+        </span>
+    </div>
+
+    <div class="detail">
+        <strong>Department:</strong>
+        <span th:text="${student.department}">
+            Department
+        </span>
+    </div>
+
+</div>
+
+</main>
+
+</body>
+</html>

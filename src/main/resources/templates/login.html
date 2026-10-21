@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login</title>
+
+<link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+<main class="login-page">
+
+<div class="login-container">
+
+    <div class="login-card">
+
+        <h1 class="login-title">
+            Hostel Management System
+        </h1>
+
+        <p class="login-subtitle">
+            Sign in to continue
+        </p>
+
+        <div th:if="${param.error}"
+             class="message error login-message">
+            Invalid email or password.
+        </div>
+
+        <div th:if="${param.logout}"
+             class="message success login-message">
+            You have been logged out successfully.
+        </div>
+
+        <form th:action="@{/login}"
+              method="post">
+
+            <div class="form-group">
+
+                <label for="username">
+                    Email
+                </label>
+
+                <input type="email"
+                       id="username"
+                       name="username"
+                       required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input type="password"
+                       id="password"
+                       name="password"
+                       required>
+
+            </div>
+
+            <button type="submit"
+                    class="login-button">
+                Login
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</main>
+
+</body>
+</html>
